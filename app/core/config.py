@@ -1,0 +1,12 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+BASEROW_TOKEN = os.getenv("BASEROW_TOKEN", "")
+BASEROW_BASE_URL = os.getenv("BASEROW_BASE_URL", "")
+
+TABLE_PERSONAS = os.getenv("TABLE_PERSONAS", "")
+TABLE_ENCUESTAS = os.getenv("TABLE_ENCUESTAS", "")
+TABLE_RESPUESTAS_NOM50 = os.getenv("TABLE_RESPUESTAS_NOM50", "")
+TABLE_RESPUESTAS_ACONTECIMIENTOS = os.getenv("TABLE_RESPUESTAS_ACONTECIMIENTOS", "")
