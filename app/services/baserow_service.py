@@ -27,11 +27,20 @@ class BaserowService:
             f"{BASEROW_BASE_URL}/{TABLE_PERSONAS}/"
             f"?user_field_names=true&filter__field_id_empleado__equal={encoded}"
         )
+
         response = await self.client.get(url)
         response.raise_for_status()
+
         data = response.json()
         results = data.get("results", [])
-        return results[0] if results else None
+
+        # Validación exacta en Python
+        for row in results:
+            row_id_empleado = str(row.get("id_empleado", "")).strip()
+            if row_id_empleado == str(id_empleado).strip():
+                return row
+
+        return None
 
     async def create_person(self, payload: dict):
         url = f"{BASEROW_BASE_URL}/{TABLE_PERSONAS}/?user_field_names=true"
